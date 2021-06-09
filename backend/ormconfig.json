@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "docker",
+  "database": "projeto-lc",
+  "entities": ["./src/models/*.ts"],
+  "migrationsTableName": "custom_migration_table",
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
