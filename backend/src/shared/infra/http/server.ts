@@ -8,6 +8,7 @@ import MsgError from '@shared/errors/MsgError';
 import router from './router';
 
 import '@shared/infra/typeorm';
+import '@shared/container';
 
 const app = express();
 

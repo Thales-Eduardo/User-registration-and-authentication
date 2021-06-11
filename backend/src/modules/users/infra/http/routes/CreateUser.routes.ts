@@ -1,22 +1,10 @@
 import { Router } from 'express';
 
-import CreateUserService from '@modules/users/services/CreateUserService';
-import response from '@config/response';
+import CreateUserController from '../controllers/CreateUserController';
 
 const CreateUserRoutes = Router();
+const createUserController = new CreateUserController();
 
-CreateUserRoutes.post('/', async (req, res) => {
-  const { name, email, password } = req.body;
-
-  const CreateUser = new CreateUserService();
-
-  const newUser = await CreateUser.execute({
-    name,
-    email,
-    password,
-  });
-
-  return res.json({ user: response.render(newUser) });
-});
+CreateUserRoutes.post('/', createUserController.create);
 
 export default CreateUserRoutes;
