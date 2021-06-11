@@ -3,13 +3,17 @@ import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
-import MsgError from './errors/MsgError';
+
+import MsgError from '@shared/errors/MsgError';
 import router from './router';
-import './database';
+
+import '@shared/infra/typeorm';
 
 const app = express();
-app.use(express.json());
+
 app.use(cors());
+
+app.use(express.json());
 app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

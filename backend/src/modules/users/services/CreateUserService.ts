@@ -1,8 +1,8 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
-import User from '../models/User';
-import MsgError from '../errors/MsgError';
+import User from '../infra/typeorm/model/User';
+import MsgError from '@shared/errors/MsgError';
 
 interface Request {
   name: string;

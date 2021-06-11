@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import CreateUserService from '../services/CreateUserService';
-import response from '../config/response';
+import CreateUserService from '@modules/users/services/CreateUserService';
+import response from '@config/response';
 
 const CreateUserRoutes = Router();
 

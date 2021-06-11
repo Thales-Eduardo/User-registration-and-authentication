@@ -1,4 +1,4 @@
-import User from '../models/User';
+import User from '@modules/users/infra/typeorm/model/User';
 
 export default {
   render(user: User) {
