@@ -2,18 +2,22 @@
 
 ## web
 
-![App Screenshot](./assets/webLogin.png)
+![webLogin](./assets/webLogin.png)
 
-![App Screenshot](./assets/webCadastro.png)
+![webCadastro](./assets/webCadastro.png)
 
 ## mobile
 
-![App Screenshot](./assets/mobileLogin.png)
+![mobileLogin](./assets/mobileLogin.png)
 
-![App Screenshot](./assets/mobileCadastro.png)
+![mobileCadastro](./assets/mobileCadastro.png)
 
 ## back end
 
 language: Typescript/Javascript;
-techs: jwt, typeorm, postgresql, express, bcryptjs;
+
+techs: node, tsyringe, jwt, typeorm, postgresql, express, bcryptjs;
+
 methodology: SOLID, DDD, TDD;
+
+![jest doc]()
