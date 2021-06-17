@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { compare } from 'bcryptjs';
+import HashProvider from '../providers/HashProvider/methods/HashProvider';
 import { sign } from 'jsonwebtoken';
 
 import authconfig from '@config/auth';
@@ -22,7 +22,10 @@ interface Response {
 class AutenticateUserService {
   constructor(
     @inject('UserRepository')
-    private userRepository: IUserRepository
+    private userRepository: IUserRepository,
+
+    @inject('HashProvider')
+    private hashProvider: HashProvider
   ) {}
   public async execute({ email, password }: Request): Promise<Response> {
     const user = await this.userRepository.findByEmail(email);
@@ -31,7 +34,10 @@ class AutenticateUserService {
       throw new MsgError('E-mail ou senha está incorreto', 401);
     }
 
-    const comparePassword = await compare(password, user.password);
+    const comparePassword = await this.hashProvider.compareHash(
+      password,
+      user.password
+    );
 
     if (!comparePassword) {
       throw new MsgError('E-mail ou senha está incorreto', 401);
