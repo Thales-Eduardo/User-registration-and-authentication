@@ -20,4 +20,6 @@ techs: node, tsyringe, jwt, typeorm, postgresql, express, bcryptjs;
 
 methodology: SOLID, DDD, TDD;
 
-![jest doc]()
+# Testes unitários.
+
+![jest doc](./assets/jest.png)
