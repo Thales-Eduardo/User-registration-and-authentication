@@ -1,24 +1,24 @@
 # Cadastro de usuários e autenticação.
 
-## web
+## Web
 
 ![webLogin](./assets/webLogin.png)
 
 ![webCadastro](./assets/webCadastro.png)
 
-## mobile
+## Mobile
 
 ![mobileLogin](./assets/mobileLogin.png)
 
 ![mobileCadastro](./assets/mobileCadastro.png)
 
-## back end
+## Back end
 
-language: Typescript/Javascript;
+Language: Typescript/Javascript;
 
-techs: node, tsyringe, jwt, typeorm, postgresql, express, bcryptjs;
+Techs: node, tsyringe, jwt, typeorm, postgresql, express, bcryptjs;
 
-methodology: SOLID, DDD, TDD;
+Methodology: SOLID, DDD, TDD;
 
 # Testes unitários.
 
