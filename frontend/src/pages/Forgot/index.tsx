@@ -52,8 +52,6 @@ const Forgot: React.FC = () => {
           title: '👍',
           description: 'Um e-mail foi enviado para sua conta',
         });
-
-        history.push('/');
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           const err = getValidationError(error);
@@ -68,7 +66,7 @@ const Forgot: React.FC = () => {
         setLoading(false);
       }
     },
-    [addToast, history],
+    [addToast],
   );
 
   return (
