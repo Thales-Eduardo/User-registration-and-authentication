@@ -1,10 +1,13 @@
 import { Router } from 'express';
 
 import ProfileController from '../controllers/ProfileController';
+import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
 
-const sessionsRouter = Router();
+const profileRouter = Router();
 const profileController = new ProfileController();
 
-sessionsRouter.post('/', profileController.update);
+profileRouter.use(ensureAuthenticated);
 
-export default sessionsRouter;
+profileRouter.put('/', profileController.update);
+
+export default profileRouter;

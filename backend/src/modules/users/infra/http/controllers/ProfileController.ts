@@ -7,6 +7,7 @@ import UpdateProfileService from '@modules/users/services/UpdateProfileService';
 class ProfileController {
   public async update(req: Request, res: Response): Promise<Response> {
     const { name, email, oldPassword, newPassword } = req.body;
+
     const updateProfile = container.resolve(UpdateProfileService);
 
     const user = await updateProfile.execute({
@@ -16,6 +17,7 @@ class ProfileController {
       oldPassword,
       newPassword,
     });
+
     return res.json({ user: response.render(user) });
   }
 }

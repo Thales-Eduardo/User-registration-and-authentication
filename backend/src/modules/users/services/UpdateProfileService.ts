@@ -43,9 +43,6 @@ class UpdateProfileService {
       throw new MsgError('Esse e-mail já esta em uso!', 403);
     }
 
-    user.name = name;
-    user.email = email;
-
     if (newPassword && !oldPassword) {
       throw new MsgError(
         'para atualizar sua senha, informe seu antigo password!'
@@ -66,6 +63,9 @@ class UpdateProfileService {
 
       user.password = await this.hashProvider.generateHash(newPassword);
     }
+
+    user.name = name;
+    user.email = email;
 
     return await this.usersRepository.save(user);
   }
