@@ -50,6 +50,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     localStorage.setItem('@Token', token);
     localStorage.setItem('@User', JSON.stringify(user));
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
     setData({ token, user });
   }, []); // checara os dados com o bd e retornara reposta e salvar no localhost
 
