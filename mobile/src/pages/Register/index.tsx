@@ -55,22 +55,12 @@ const Register: React.FC = () => {
           abortEarly: false,
         });
 
-        await api
-          .post('/users', data)
-          .then((success) => {
-            if (success) {
-              Alert.alert(
-                'Cadastro concluído!',
-                'Você já pode fazer seu login.',
-              );
-            }
-          })
-          .catch((error) => {
-            if (error.response) {
-              const { message } = error.response.data;
-              Alert.alert('Error no Cadastro', `${message}!`);
-            }
-          });
+        await api.post('/users', data).then((success) => {
+          if (success) {
+            Alert.alert('Cadastro concluído!', 'Você já pode fazer seu login.');
+          }
+        });
+
         navigation.goBack();
       } catch (error) {
         if (error instanceof yup.ValidationError) {
