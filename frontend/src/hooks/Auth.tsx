@@ -4,7 +4,6 @@ import api from '../services/api';
 
 interface User {
   id: string;
-  avatarUrl: string;
   name: string;
   email: string;
 }
@@ -85,9 +84,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 
-  if (!context) {
-    throw new Error('useAuth deve ser usado somente em um usúario autenticado');
-  }
+
   return context;
 }
 // essa função dara acesso a todos os metodos

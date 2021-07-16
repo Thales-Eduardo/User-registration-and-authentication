@@ -54,15 +54,6 @@ const Login: React.FC = () => {
               });
             }
           })
-          .catch((error) => {
-            if (error.response) {
-              const { message } = error.response.data;
-              addToast({
-                type: 'error',
-                title: message,
-              });
-            }
-          });
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           const err = getValidationError(error);
