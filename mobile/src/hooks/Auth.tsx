@@ -101,9 +101,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 
-  if (!context) {
-    throw new Error('useAuth deve ser usado somente em um usúario autenticado');
-  }
+
   return context;
 }
 // essa função dara acesso a todos os metodos
