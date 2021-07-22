@@ -84,7 +84,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 
-
   return context;
 }
 // essa função dara acesso a todos os metodos

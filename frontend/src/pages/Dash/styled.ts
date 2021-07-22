@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
+import { theme } from '../../style/theme';
 
 export const Container = styled.div``;
 
 export const Header = styled.div`
   padding: 32px 0;
-  background-color: #28262e;
+  background-color: ${theme.colors.header};
 `;
 
 export const HeaderContent = styled.div`
@@ -21,7 +22,7 @@ export const HeaderContent = styled.div`
   }
 
   svg {
-    color: #fff;
+    color: ${theme.colors.color};
     height: 20px;
     width: 20px;
   }
@@ -38,7 +39,7 @@ export const Profile = styled.div`
     line-height: 24px;
 
     span {
-      color: #20a6ff;
+      color: ${theme.colors.backgroundButton};
       margin-right: 5px;
     }
   }
@@ -66,14 +67,14 @@ export const Content = styled.div`
     }
 
     a {
-      color: #f4ede8;
+      color: ${theme.colors.color};
       display: block;
       margin-top: 24px;
       text-decoration: none;
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.2, '#f4ede8')};
+        color: ${shade(0.2, `${theme.colors.color}`)};
       }
     }
   }

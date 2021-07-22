@@ -1,5 +1,17 @@
 # Cadastro de usuários e autenticação.
 
+## Back end
+
+Language: Typescript/Javascript;
+
+dependence: tsyringe, jwt, typeorm, postgresql, express, bcryptjs, jest;
+
+Methodology: SOLID, DDD, TDD;
+
+# Testes unitários.
+
+![jest doc](./assets/jest.png)
+
 ## Web
 
 ![webLogin](./assets/webLogin.png)
@@ -11,15 +23,3 @@
 ![mobileLogin](./assets/mobileLogin.png)
 
 ![mobileCadastro](./assets/mobileCadastro.png)
-
-## Back end
-
-Language: Typescript/Javascript;
-
-Techs: node, tsyringe, jwt, typeorm, postgresql, express, bcryptjs;
-
-Methodology: SOLID, DDD, TDD;
-
-# Testes unitários.
-
-![jest doc](./assets/jest.png)

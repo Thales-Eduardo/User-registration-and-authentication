@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
+import { theme } from '../../style/theme';
 
 const appearFromLeft = keyframes`
   from {
@@ -32,7 +33,7 @@ export const AnimationContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px dashed #f4ede8;
+    border: 2px dashed ${theme.colors.color};
     padding: 10px;
 
     width: 350px;
@@ -40,14 +41,14 @@ export const AnimationContainer = styled.div`
   }
 
   a {
-    color: #f4ede8;
+    color: ${theme.colors.color};
     display: block;
     margin-top: 26px;
     text-decoration: none;
     transition: color 0.2s;
 
     &:hover {
-      color: ${shade(0.2, '#f4ede8')};
+      color: ${shade(0.2, `${theme.colors.color}`)};
     }
 
     display: flex;
@@ -58,7 +59,7 @@ export const AnimationContainer = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#f4ede8')};
+      color: ${shade(0.2, `${theme.colors.color}`)};
     }
   }
 `;

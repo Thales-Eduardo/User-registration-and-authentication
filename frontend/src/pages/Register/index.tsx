@@ -44,16 +44,14 @@ const Login: React.FC = () => {
           abortEarly: false,
         });
 
-        await api
-          .post('/users', data)
-          .then((success) => {
-            if (success) {
-              addToast({
-                type: 'success',
-                title: 'Cadastro Concluído!',
-              });
-            }
-          })
+        await api.post('/users', data).then((success) => {
+          if (success) {
+            addToast({
+              type: 'success',
+              title: 'Cadastro Concluído!',
+            });
+          }
+        });
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           const err = getValidationError(error);

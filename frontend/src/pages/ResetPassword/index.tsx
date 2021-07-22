@@ -1,8 +1,8 @@
 import React, { useCallback, useRef } from 'react';
-import { FiLock, FiChevronsRight } from 'react-icons/fi';
+import { FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { useToast } from '../../hooks/Toats';

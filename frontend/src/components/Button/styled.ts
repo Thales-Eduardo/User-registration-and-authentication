@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
+import { theme } from '../../style/theme';
 
 export const Container = styled.button`
   margin-top: 60px;
-  background: #20a6ff;
-  color: #312e38;
+  background: ${theme.colors.backgroundButton};
+  color: ${theme.colors.colorButton};
   height: 56px;
   border-radius: 10px;
   border: 0;
@@ -14,6 +15,6 @@ export const Container = styled.button`
   transition: background-color 0.2s;
 
   &:hover {
-    background: ${shade(0.2, '#20a6ff')};
+    background: ${shade(0.2, `${theme.colors.backgroundButton}`)};
   }
 `;
