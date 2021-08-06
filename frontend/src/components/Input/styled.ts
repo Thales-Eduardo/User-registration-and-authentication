@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { theme } from '../../style/theme';
 
 import Tooltip from '../tooltip';
 
@@ -17,7 +16,7 @@ export const Container = styled.div<ContainerPros>`
 
   color: #666360;
   border: 0;
-  border-bottom: 2px solid ${theme.colors.color};
+  border-bottom: 2px solid ${(props) => props.theme.colors.color};
 
   & + div {
     margin-top: 24px;
@@ -26,20 +25,20 @@ export const Container = styled.div<ContainerPros>`
   ${(props) =>
     props.IsErrored &&
     css`
-      border-color: ${theme.colors.backgroundError};
+      border-color: ${props.theme.colors.backgroundError};
     `}
 
   ${(props) =>
     props.isFocused &&
     css`
-      color: ${theme.colors.backgroundButton};
-      border-color: ${theme.colors.backgroundButton};
+      color: ${props.theme.colors.backgroundButton};
+      border-color: ${props.theme.colors.backgroundButton};
     `}
 
   ${(props) =>
     props.isFilled &&
     css`
-      color: ${theme.colors.backgroundButton};
+      color: ${props.theme.colors.backgroundButton};
     `}
 
   display: flex;
@@ -49,10 +48,10 @@ export const Container = styled.div<ContainerPros>`
     flex: 1;
     background: transparent;
     border: 0;
-    color: ${theme.colors.color};
+    color: ${(props) => props.theme.colors.color};
 
     &::placeholder {
-      color: ${theme.colors.color};
+      color: ${(props) => props.theme.colors.color};
     }
   }
 
@@ -71,11 +70,11 @@ export const Error = styled(Tooltip)`
   }
 
   span {
-    background: ${theme.colors.backgroundError};
-    color: ${theme.colors.color};
+    background: ${(props) => props.theme.colors.backgroundError};
+    color: ${(props) => props.theme.colors.color};
 
     &::before {
-      border-color: ${theme.colors.backgroundError} transparent;
+      border-color: ${(props) => props.theme.colors.backgroundError} transparent;
     }
   }
 `;

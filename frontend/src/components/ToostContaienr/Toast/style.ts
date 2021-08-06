@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
-import { theme } from '../../../style/theme';
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
@@ -9,16 +8,16 @@ interface ContainerProps {
 
 const toatsTypeVariations = {
   info: css`
-    background: ${theme.colors.backgroundinfo};
-    color: ${theme.colors.colorinfo};
+    background: ${(props) => props.theme.colors.backgroundinfo};
+    color: ${(props) => props.theme.colors.colorinfo};
   `,
   success: css`
-    background: ${theme.colors.backgroundSuccess};
-    color: ${theme.colors.colorSuccess};
+    background: ${(props) => props.theme.colors.backgroundSuccess};
+    color: ${(props) => props.theme.colors.colorSuccess};
   `,
   error: css`
-    background: ${theme.colors.backgroundError};
-    color: ${theme.colors.backgroundError};
+    background: ${(props) => props.theme.colors.backgroundError};
+    color: ${(props) => props.theme.colors.backgroundError};
   `,
 };
 

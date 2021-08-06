@@ -30,6 +30,7 @@
     "no-undef": "off",
     "no-console": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-shadow": "off",
     "no-unused-expressions": "off",
     "react/prop-types": "off",

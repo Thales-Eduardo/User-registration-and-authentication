@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { theme } from '../../style/theme';
 
 export const Contaienr = styled.div`
   position: relative;
 
   span {
-    background: ${theme.colors.backgroundError};
+    background: ${(props) => props.theme.colors.backgroundError};
     padding: 8px;
     border-radius: 4px;
     font-size: 14px;
@@ -20,12 +19,12 @@ export const Contaienr = styled.div`
     left: 50%;
     transform: translateX(-50%);
 
-    color: ${theme.colors.color};
+    color: ${(props) => props.theme.colors.color};
 
     &::before {
       content: '';
       border-style: solid;
-      border-color: ${theme.colors.backgroundError} transparent;
+      border-color: ${(props) => props.theme.colors.backgroundError} transparent;
       border-width: 6px 6px 0 6px;
       top: 100%;
       position: absolute;
