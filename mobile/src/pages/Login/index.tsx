@@ -17,7 +17,6 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import getValidationError from '../../utils/getValidationErrors';
 import { useAuth } from '../../hooks/Auth';
-import Dash from '../Dash';
 
 import {
   ContainerView,

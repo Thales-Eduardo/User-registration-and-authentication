@@ -14,7 +14,7 @@ Methodology: SOLID, DDD, TDD;
 
 ## Web
 
-![webLogin](./assets/webLogin.png)
+![webLogin](./assets/web-login.png)
 
 ![webCadastro](./assets/webCadastro.png)
 
