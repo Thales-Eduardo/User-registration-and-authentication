@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  postgres_bd:
+    image: postgres
+    container_name: products_app
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=projeto-lc
+    volumes:
+      - ./pgdata:/data/postgres
+  app:
+    build: .
+    container_name: node
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    depends_on:
+      - postgres_bd
