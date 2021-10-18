@@ -4,6 +4,7 @@ services:
   postgres_bd:
     image: postgres
     container_name: products_app
+    restart: always
     ports:
       - 5432:5432
     environment:
@@ -15,6 +16,7 @@ services:
   app:
     build: .
     container_name: node
+    restart: always
     ports:
       - 3333:3333
     volumes:

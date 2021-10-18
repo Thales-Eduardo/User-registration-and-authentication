@@ -4,9 +4,11 @@ import { sign } from 'jsonwebtoken';
 
 import authconfig from '@config/auth';
 import User from '../infra/typeorm/model/User';
+import RefreshToken from '../infra/typeorm/model/RefreshToken';
 import MsgError from '@shared/errors/MsgError';
 
 import IUserRepository from '../repository/IUserRepository';
+import { IRefreshTokenRepository } from '../repository/IRefreshTokenRepository';
 
 interface Request {
   email: string;
@@ -16,6 +18,7 @@ interface Request {
 interface Response {
   user: User;
   token: string;
+  refreshToken: RefreshToken;
 }
 
 @injectable()
@@ -25,7 +28,10 @@ class AutenticateUserService {
     private userRepository: IUserRepository,
 
     @inject('HashProvider')
-    private hashProvider: HashProvider
+    private hashProvider: HashProvider,
+
+    @inject('RefreshTokenRepository')
+    private refreshToken: IRefreshTokenRepository
   ) {}
   public async execute({ email, password }: Request): Promise<Response> {
     const user = await this.userRepository.findByEmail(email);
@@ -50,9 +56,12 @@ class AutenticateUserService {
       expiresIn,
     });
 
+    const refreshToken = await this.refreshToken.generateRefreshToken(user.id);
+
     return {
       user,
       token,
+      refreshToken,
     };
   }
 }

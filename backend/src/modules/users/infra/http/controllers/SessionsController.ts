@@ -10,12 +10,12 @@ class SessionsController {
 
     const AutenticateUser = container.resolve(AutenticateUserService);
 
-    const { user, token } = await AutenticateUser.execute({
+    const { user, token, refreshToken } = await AutenticateUser.execute({
       email,
       password,
     });
 
-    return res.json({ user: response.render(user), token });
+    return res.json({ user: response.render(user), token, refreshToken });
   }
 }
 
