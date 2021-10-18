@@ -17,7 +17,7 @@ const toatsTypeVariations = {
   `,
   error: css`
     background: ${(props) => props.theme.colors.backgroundError};
-    color: ${(props) => props.theme.colors.backgroundError};
+    color: ${(props) => props.theme.colors.colorError};
   `,
 };
 

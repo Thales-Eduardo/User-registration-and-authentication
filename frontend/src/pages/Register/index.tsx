@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from 'react';
 import { FiUser, FiMail, FiLock, FiChevronsLeft } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 
 import api from '../../services/api';
@@ -25,6 +25,7 @@ const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { addToast } = useToast();
+  const history = useHistory();
 
   const handleSubmit = useCallback(
     async (data: LoginFormData) => {
@@ -52,6 +53,7 @@ const Login: React.FC = () => {
             });
           }
         });
+        history.push('/');
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           const err = getValidationError(error);
@@ -65,7 +67,7 @@ const Login: React.FC = () => {
         });
       }
     },
-    [addToast],
+    [addToast, history],
   );
 
   return (

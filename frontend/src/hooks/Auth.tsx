@@ -33,14 +33,14 @@ export const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@User');
 
     if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
       return { token, user: JSON.parse(user) };
     }
     return {} as AuthState;
   }); // para ter acesso aos dados enviado do bd como user, email...
 
   const signIn = useCallback(async ({ email, password }) => {
-    const res = await api.post('/sessions', {
+    const res: any = await api.post('/sessions', {
       email,
       password,
     });
@@ -50,7 +50,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem('@Token', token);
     localStorage.setItem('@User', JSON.stringify(user));
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
     setData({ token, user });
   }, []); // checara os dados com o bd e retornara reposta e salvar no localhost
 

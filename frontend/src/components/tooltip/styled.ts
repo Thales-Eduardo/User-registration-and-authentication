@@ -19,7 +19,7 @@ export const Contaienr = styled.div`
     left: 50%;
     transform: translateX(-50%);
 
-    color: ${(props) => props.theme.colors.color};
+    color: ${(props) => props.theme.colors.colorError};
 
     &::before {
       content: '';

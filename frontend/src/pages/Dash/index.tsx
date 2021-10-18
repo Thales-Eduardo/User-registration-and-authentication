@@ -80,7 +80,7 @@ const Dash: React.FC = () => {
 
         api
           .put('/profile', formData)
-          .then((response) => {
+          .then((response: any) => {
             const { user } = response.data;
             updateUser(user);
             addToast({
