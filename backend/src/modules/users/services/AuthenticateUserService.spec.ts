@@ -2,6 +2,8 @@ import 'reflect-metadata';
 
 import FakeUsersRepository from '../repository/fakes/FakeUserRepository';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
+import FakeRefreshTokenRepository from '../repository/fakes/FakeRefreshTokenRepository';
+
 import AuthenticateUserServis from './AuthenticateUserService';
 import CreateUsersSevice from './CreateUserService';
 
@@ -9,6 +11,8 @@ import AppError from '@shared/errors/MsgError';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
+let fakeRefreshTokenRepository: FakeRefreshTokenRepository;
+
 let createUsersSevice: CreateUsersSevice;
 let authenticateUserServis: AuthenticateUserServis;
 
@@ -16,6 +20,7 @@ describe('AuthenticateUser', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
+    fakeRefreshTokenRepository = new FakeRefreshTokenRepository();
 
     createUsersSevice = new CreateUsersSevice(
       fakeUsersRepository,
@@ -24,7 +29,8 @@ describe('AuthenticateUser', () => {
 
     authenticateUserServis = new AuthenticateUserServis(
       fakeUsersRepository,
-      fakeHashProvider
+      fakeHashProvider,
+      fakeRefreshTokenRepository
     );
   });
 
