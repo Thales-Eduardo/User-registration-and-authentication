@@ -41,13 +41,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function loadStoragedData(): Promise<void> {
-      const [token, user] = await AsyncStorage.multiGet([
-        '@Gobaber:token',
-        '@Gobaber:user',
-      ]);
+      const [token, user] = await AsyncStorage.multiGet(['@Token', '@User']);
 
       if (token[1] && user[1]) {
-        api.defaults.headers.authorization = `Bearer ${token[1]}`;
+        api.defaults.headers.common.authorization = `Bearer ${token[1]}`;
         setData({ token: token[1], user: JSON.parse(user[1]) });
       }
       setloading(false);
@@ -56,7 +53,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
-    const reponse = await api.post('/sessions', {
+    const reponse: any = await api.post('/sessions', {
       email,
       password,
     });
@@ -64,17 +61,17 @@ export const AuthProvider: React.FC = ({ children }) => {
     const { token, user } = reponse.data;
 
     await AsyncStorage.multiSet([
-      ['@Gobaber:token', token],
-      ['@Gobaber:user', JSON.stringify(user)],
+      ['@Token', token],
+      ['@User', JSON.stringify(user)],
     ]);
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
 
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@Gobaber:token', '@Gobaber:user']);
+    await AsyncStorage.multiRemove(['@Token', '@User']);
     setData({} as AuthState);
   }, []);
 
@@ -100,7 +97,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
-
 
   return context;
 }
