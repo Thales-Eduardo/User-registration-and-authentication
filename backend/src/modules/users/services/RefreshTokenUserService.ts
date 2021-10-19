@@ -20,11 +20,11 @@ class RefreshTokenUserServices {
       throw new AppErrors('Refresh token invalid');
     }
 
-    const { secret } = authConfig.jwt;
+    const { secret, expiresIn } = authConfig.jwt;
 
     const token = sign({}, secret, {
       subject: user.user_id,
-      expiresIn: '1d',
+      expiresIn,
     });
 
     const expired = dayjs().isAfter(dayjs.unix(user.expiresIn));

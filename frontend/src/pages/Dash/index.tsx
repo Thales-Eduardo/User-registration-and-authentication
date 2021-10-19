@@ -78,25 +78,14 @@ const Dash: React.FC = () => {
             : {}),
         };
 
-        api
-          .put('/profile', formData)
-          .then((response: any) => {
-            const { user } = response.data;
-            updateUser(user);
-            addToast({
-              type: 'success',
-              title: 'Perfil Atualizado!',
-            });
-          })
-          .catch((err) => {
-            if (err.response.status === 401) {
-              signOut();
-              addToast({
-                type: 'info',
-                title: 'Refaça o login novamente!',
-              });
-            }
+        await api.put('/profile', formData).then((response: any) => {
+          const { user } = response.data;
+          updateUser(user);
+          addToast({
+            type: 'success',
+            title: 'Perfil Atualizado!',
           });
+        });
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           const errors = getValidationErrors(error);
@@ -110,7 +99,7 @@ const Dash: React.FC = () => {
         });
       }
     },
-    [addToast, updateUser, signOut],
+    [addToast, updateUser],
   );
 
   return (
