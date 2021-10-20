@@ -34,7 +34,7 @@ const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const { signIn } = useAuth();
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   const handleLogin = useCallback(async (data: LoginFormData) => {
     try {
@@ -67,6 +67,10 @@ const Login: React.FC = () => {
       );
     }
   }, []);
+
+  function navegation(Register: any) {
+    navigate(Register);
+  }
 
   return (
     <>
@@ -122,7 +126,7 @@ const Login: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+      <TouchableOpacity onPress={() => navegation('Register')}>
         <Icon name="log-in" size={20} color="#20a6ff" />
         <TouchableOpacityText>Criar conta</TouchableOpacityText>
       </TouchableOpacity>

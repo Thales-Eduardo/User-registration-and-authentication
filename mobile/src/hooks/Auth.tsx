@@ -18,6 +18,7 @@ interface User {
 interface AuthState {
   user: User;
   token: string;
+  refreshToken: any;
 }
 
 interface SingnInProps {
@@ -41,11 +42,19 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function loadStoragedData(): Promise<void> {
-      const [token, user] = await AsyncStorage.multiGet(['@Token', '@User']);
+      const [token, user, refreshToken] = await AsyncStorage.multiGet([
+        '@Token',
+        '@User',
+        '@RefreshToken',
+      ]);
 
-      if (token[1] && user[1]) {
+      if (token[1] && user[1] && refreshToken[1]) {
         api.defaults.headers.common.authorization = `Bearer ${token[1]}`;
-        setData({ token: token[1], user: JSON.parse(user[1]) });
+        setData({
+          token: token[1],
+          user: JSON.parse(user[1]),
+          refreshToken: JSON.parse(refreshToken[1]),
+        });
       }
       setloading(false);
     }
@@ -58,20 +67,21 @@ export const AuthProvider: React.FC = ({ children }) => {
       password,
     });
 
-    const { token, user } = reponse.data;
+    const { token, user, refreshToken } = reponse.data;
 
     await AsyncStorage.multiSet([
       ['@Token', token],
       ['@User', JSON.stringify(user)],
+      ['@RefreshToken', JSON.stringify(refreshToken)],
     ]);
 
     api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-    setData({ token, user });
+    setData({ token, user, refreshToken });
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@Token', '@User']);
+    await AsyncStorage.multiRemove(['@Token', '@User', '@RefreshToken']);
     setData({} as AuthState);
   }, []);
 
@@ -81,9 +91,35 @@ export const AuthProvider: React.FC = ({ children }) => {
       setData({
         token: data.token,
         user,
+        refreshToken: data.refreshToken,
       });
     },
     [setData, data.token],
+  );
+
+  api.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    // eslint-disable-next-line func-names
+    async function (error: any): Promise<any> {
+      const [token, refreshToken]: any = await AsyncStorage.multiGet([
+        '@Token',
+        '@RefreshToken',
+      ]);
+
+      const dataRefresh = JSON.parse(refreshToken[1]);
+
+      if (error.response.status === 401 && token) {
+        const response: any = await api.post('/profile/refresh-token', {
+          id: dataRefresh.id,
+        });
+        const { token } = response.data;
+        await AsyncStorage.setItem('@Token', token);
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      }
+      return Promise.reject(error);
+    },
   );
 
   return (
